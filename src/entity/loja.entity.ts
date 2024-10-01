@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Loja {
@@ -7,4 +7,5 @@ export class Loja {
 
     @Column()
     descricao: string;
-}
+
+    }

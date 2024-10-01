@@ -13,11 +13,11 @@ export class LojasController {
     //Retorna uma loja pelo id
     @Get(':id')
     findOne(@Param('id') id: number): Promise<Loja> {
-        const user = this.lojasService.findOne(id);
-        if (!user) {
+        const loja = this.lojasService.findOne(id);
+        if (!loja) {
             throw new Error('Loja não encontrada');
         } else {
-            return user;
+            return loja;
         }
     }
     //Cria uma nova loja
