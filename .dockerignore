@@ -1,0 +1,6 @@
+#Garante que os arquivos vão ser apenas locais, não vão ser enviados para o container.
+
+dist
+node_modules
+.git
+
