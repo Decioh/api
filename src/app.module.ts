@@ -6,7 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ProdutosModule } from './produtos/produtos.module';
 import { LojasModule } from './lojas/lojas.module';
 import { ProdutolojasModule } from './produtolojas/produtolojas.module';
-import { AppDataSource } from './data-source'; // Import the data source
+import { AppDataSource } from './data-source'; // Importa a data source
 
 @Module({
   imports: [

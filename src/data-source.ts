@@ -1,6 +1,8 @@
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
-import { Loja } from './entity/loja.entity'; // Adjust the path as necessary
+import { Loja } from './entity/loja.entity';
+import { ProdutoLoja } from './entity/produtoloja.entity';
+import { Produto } from './entity/produto.entity';
 
 const configService = new ConfigService();
 
@@ -11,7 +13,7 @@ export const AppDataSource = new DataSource({
   username: configService.get<string>('DB_USER'),
   password: configService.get<string>('DB_PASSWORD'),
   database: configService.get<string>('DB_DB'),
-  entities: [Loja], // Include all entities here
+  entities: [Loja, ProdutoLoja, Produto],
   migrations: ['src/migration/**/*.ts'],
   synchronize: true,
 });
