@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, ManyToOne, Column, Unique } from "typeo
 import { Produto } from "./produto.entity"; 
 import { Loja } from "./loja.entity";
 
-@Entity()
+@Entity("produtoloja")
 @Unique(['produto', 'loja'])
 export class ProdutoLoja {
     @PrimaryGeneratedColumn()

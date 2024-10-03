@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { Loja } from './entity/loja.entity';
 import { ProdutoLoja } from './entity/produtoloja.entity';
 import { Produto } from './entity/produto.entity';
+import "reflect-metadata"; 
 
 const configService = new ConfigService();
 
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
   password: configService.get<string>('DB_PASSWORD'),
   database: configService.get<string>('DB_DB'),
   entities: [Loja, ProdutoLoja, Produto],
-  migrations: ['src/migration/*{.ts,.js}'],
+  migrations: ['src/migration/*{.ts}'],
   synchronize: true,
   dropSchema: true,
 

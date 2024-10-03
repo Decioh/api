@@ -52,8 +52,11 @@ export class ProdutosService {
                     loja: { id: loja.id },
                     precoVenda: loja.precoVenda,
                 };
-                if (isNaN(createPricesResource.produto.id || createPricesResource.produto.id === null)){
+                /*if (isNaN(createPricesResource.produto.id) || (createPricesResource.produto.id === null)){
                     throw Error('Produto Id is NULL');
+                }*/
+                if (createPricesResource.produto.id === null || createPricesResource.produto.id === undefined || isNaN(Number(createPricesResource.produto.id))) {
+                  throw new Error('Produto Id is NULL or not a valid number');
                 }
                 const newProdutoLoja = this.produtoLojaRepository.create(createPricesResource);
                 await this.produtoLojaRepository.save(newProdutoLoja);
