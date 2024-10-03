@@ -9,25 +9,22 @@ export class LojasService {
         @InjectRepository(Loja)
         private lojaRepository: Repository<Loja>,
     ) {}
-    //Retorna todas as lojas
-    async findall(): Promise<Loja[]> {
-        return this.lojaRepository.find();
+
+    // Retorna todas as lojas
+    async findAll(): Promise<Loja[]> {
+        try {
+            return await this.lojaRepository.find();
+        } catch (error) {
+            throw new Error(`Error getting stores: ${error.message}`);
+        }
     }
-    //Retorna uma loja pelo id
+
+    // Retorna uma loja pelo id
     async findOne(id: number): Promise<Loja> {
-        return this.lojaRepository.findOne({ where: { id } });
-    }
-    //Cria uma nova loja
-    async create(loja: Loja): Promise<Loja> {
-        return this.lojaRepository.save(loja);
-    }
-    //Atualiza uma loja
-    async update(id: number, loja: Loja): Promise<Loja> {
-        await this.lojaRepository.update(id, loja);
-        return await this.lojaRepository.findOne({ where : {id}});
-    }
-    //Remove uma loja
-    async remove(id: number): Promise<void> {
-        await this.lojaRepository.delete(id);
+        try {
+            return await this.lojaRepository.findOne({ where: { id } });
+        } catch (error) {
+            throw new Error(`Error getting store: ${error.message}`);
+        }
     }
 }

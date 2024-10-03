@@ -1,0 +1,28 @@
+//import { Loja } from '../entity/loja.entity';
+//import { AppDataSource } from '../data-source';
+//
+//export async function seed() {
+//  await AppDataSource.initialize();
+//
+//  const lojaRepository = AppDataSource.getRepository(Loja);
+//
+//  // Create initial lojas
+//  const lojas = [
+//    { descricao: 'Super Maia' },
+//    { descricao: 'Comper' },
+//  ];
+//
+//  // Save lojas to the database
+//  for (const lojaData of lojas) {
+//    const loja = lojaRepository.create(lojaData);
+//    await lojaRepository.save(loja);
+//  }
+//
+//  console.log('Database seeded successfully');
+//  await AppDataSource.destroy();
+//}
+//
+//seed().catch((error) => {
+//  console.error('Error seeding database:', error);
+//  process.exit(1);
+//});

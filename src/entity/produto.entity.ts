@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, Unique } from "typeorm";
 import { ProdutoLoja } from "./produtoloja.entity";
 
 @Entity()
+
 export class Produto {
     @PrimaryGeneratedColumn()
     id: number;
@@ -15,7 +16,7 @@ export class Produto {
     @Column('bytea', { nullable: true })
     imagem: string;
 
-    @OneToMany(() => ProdutoLoja, produtoLoja => produtoLoja.produto, {cascade: true})
-    produtoLoja: ProdutoLoja[];
+    @OneToMany(() => ProdutoLoja, (produtoLoja) => produtoLoja.produto, { cascade: true })
+    produtoloja: ProdutoLoja[];
 }
 

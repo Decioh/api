@@ -1,48 +1,52 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
-import { Produto } from '../entity/produto.entity';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ProdutosService } from './produtos.service';
+import { CreateProdutoDto } from './dto/create-produto.dto';
+import { UpdateProdutoDto } from './dto/update-produto.dto';
 
 @Controller('produtos')
 export class ProdutosController {
-    constructor(private readonly produtosService: ProdutosService) {}
+  constructor(private readonly produtosService: ProdutosService) {}
 
-    //Retorna todos os produtos
-    @Get()
-    async findAll(): Promise<Produto[]> {
-        return this.produtosService.findall();
-    }
+  @Post()
+  create(@Body() createProdutoDto: CreateProdutoDto) {
+    return this.produtosService.create(createProdutoDto);
+  }
 
-    //Retorna um produto pelo id
-    @Get(':id')
-    async findOne(@Param('id') id: number): Promise<Produto> {
-        const prod = await this.produtosService.findone(id);
-        if(!prod){
-            throw new Error('Produto não encontrado');
-        } else {
-            return prod;
-        }   
-    }
+  @Get()
+  findAll() {
+    return this.produtosService.findall();
+  }
 
-    //Cria um novo produto
-    @Post()
-    async create(@Body() produto: Produto): Promise<Produto> {
-        return this.produtosService.create(produto);
-    }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.produtosService.findone(+id);
+  }
 
-    //Atualiza um produto
-    @Put(':id')
-    async update(@Param('id') id: number, @Body() produto: Produto): Promise<Produto> {
-        return this.produtosService.update(id, produto);
-    }
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateProdutoDto: UpdateProdutoDto,
+  ) {
+    return this.produtosService.update(+id, updateProdutoDto);
+  }
 
-    //Deleta um produto
-    @Delete(':id')
-    async remove(@Param('id') id: number): Promise<void> {
-        const prod = await this.produtosService.findone(id);
-        if(!prod){
-            throw new Error('Produto não encontrado');
-        }
-        return this.produtosService.remove(id);  
-    }
-    
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.produtosService.remove(+id);
+  }
+
+  @Get('search')
+  findBy(
+    @Query('descricao') descricao: string,
+    @Query('id') id: number,
+    @Query('custo') custo: number,
+    @Query('precoVenda') precoVenda: number,
+  ) {
+    return this.produtosService.search({
+      descricao,
+      id: +id,
+      custo: +custo,
+      precoVenda: +precoVenda,
+    });
+  }
 }

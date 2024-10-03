@@ -14,8 +14,10 @@ export const AppDataSource = new DataSource({
   password: configService.get<string>('DB_PASSWORD'),
   database: configService.get<string>('DB_DB'),
   entities: [Loja, ProdutoLoja, Produto],
-  migrations: ['src/migration/**/*.ts'],
+  migrations: ['src/migration/*{.ts,.js}'],
   synchronize: true,
+  dropSchema: true,
+
 });
 
 AppDataSource.initialize()
