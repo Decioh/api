@@ -11,7 +11,6 @@ describe('LojasController', () => {
     new Loja({ id: 2, descricao: 'Loja 2' }),
     new Loja({ id: 3, descricao: 'Loja 3' })
   ];
-  const LojaEntity = new Loja({ id: 1, descricao: 'Loja 1' });
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -21,7 +20,7 @@ describe('LojasController', () => {
           provide: LojasService,
           useValue: {
             findAll: jest.fn().mockResolvedValue(LojaEntityList),
-            findOne: jest.fn().mockResolvedValue(LojaEntity)
+            findOne: jest.fn().mockResolvedValue(LojaEntityList[0]),
           },
         },
       ],
@@ -46,7 +45,7 @@ describe('LojasController', () => {
   describe('findOne', () => {
     it('should return a loja', async () => {
       const result = await lojaController.findOne(1); 
-      expect(result).toBe(LojaEntity);  
+      expect(result).toBe(LojaEntityList[0]);  
     });
     //Testa se o método findOne lança um erro caso a loja não seja encontrada
     it('should throw an exception', () => {

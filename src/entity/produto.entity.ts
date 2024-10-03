@@ -18,5 +18,14 @@ export class Produto {
 
     @OneToMany(() => ProdutoLoja, (produtoLoja) => produtoLoja.produto, { cascade: true })
     produtoloja: ProdutoLoja[];
+
+    //Criar construtor para a entidade Produto, parar mockar informações para testes
+    
+    constructor(produto?: Partial<Produto>) {
+        this.id = produto?.id;
+        this.descricao = produto?.descricao;
+        this.custo = produto?.custo;
+        this.imagem = produto?.imagem;
+    }
 }
 

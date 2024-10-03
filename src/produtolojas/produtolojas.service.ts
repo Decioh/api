@@ -43,9 +43,9 @@ export class ProdutolojasService {
     }
   }
 
-  findById(lojaId: number, produtoId: number) {
+  async findById(lojaId: number, produtoId: number) {
     try {
-      return this.produtolojaRepository.findOne({
+      return await this.produtolojaRepository.findOne({
         where: { loja: { id: lojaId }, produto: { id: produtoId } },
       });
     } catch (error) {
@@ -106,8 +106,7 @@ export class ProdutolojasService {
         throw new Error(`Product-Store with ID ${id} not found`);
 
       if (produtolojaExists && productToUpdate.id !== produtolojaExists?.id)
-        throw new Error(`Product with ID ${produtoId} already with 
-        cost in store ID ${lojaId}`);
+        throw new Error(`Error updating product-store: Product with already with cost for this store`);
 
       await this.produtolojaRepository.update(
         { id },

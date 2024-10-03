@@ -19,4 +19,13 @@ export class ProdutoLoja {
 
     @ManyToOne(() => Loja, (loja) => loja.id, { nullable: false, onDelete: 'CASCADE' })
       loja: Loja;
+
+    //Criar construtor para a entidade ProdutoLoja, parar mockar informações para testes
+    
+    constructor(produtoloja?: Partial<ProdutoLoja>) {
+      this.id = produtoloja?.id;
+      this.precoVenda = produtoloja?.precoVenda;
+      this.produto = produtoloja?.produto;
+      this.loja = produtoloja?.loja;
+    }
 }
