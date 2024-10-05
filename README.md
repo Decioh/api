@@ -26,23 +26,25 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript.
 
-## Project setup
+## Requisitos
 
 ```bash
-$ npm install
+  # A aplicação está configurada para rodar em docker.
+
+  # Tenha o docker instalado e a docker machine rodando.
 ```
 
-## Compile and run the project
+## Criando o banco
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+#Configure as variáveis de ambiente no docker-compose.yml.
+#Sobe o container do banco:
+  $ docker compose up -d db
+#Executa a build do programa antes de subir o container,
+#permitindo identificar erros:
+  $ docker compose build
+# Subindo backend:
+  $ docker compose up
 ```
 
 ## Run tests
@@ -73,12 +75,6 @@ Check out a few resources that may come in handy when working with NestJS:
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
