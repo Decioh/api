@@ -8,7 +8,7 @@ export class ProdutoLoja {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column('numeric', { precision: 13, scale: 3, nullable: true,  })
+    @Column('numeric', { nullable: true,  })
     precoVenda: number;
 
     @ManyToOne(() => Produto, (produto) => produto.id, {

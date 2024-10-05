@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, Unique } from "typeorm";
 import { ProdutoLoja } from "./produtoloja.entity";
 
-@Entity()
+@Entity("produto")
 
 export class Produto {
     @PrimaryGeneratedColumn()
@@ -10,7 +10,7 @@ export class Produto {
     @Column({ type: 'varchar', length: 60, nullable: false })
     descricao: string;
 
-    @Column({ type: 'numeric', precision: 13, scale: 3, nullable: true })
+    @Column({ type: 'numeric', nullable: true })
     custo: number;
 
     @Column('bytea', { nullable: true })
